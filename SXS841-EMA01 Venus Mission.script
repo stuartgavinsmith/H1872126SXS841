@@ -1,0 +1,517 @@
+%  Script Mission - Hohmann Transfer Example
+%
+%  This script demonstrates how to target a Hohmann Transfer
+
+
+%----------------------------------------
+%---------- User-Defined Calculated Points
+%----------------------------------------
+
+Create LibrationPoint Earth_Sun_L1;
+GMAT Earth_Sun_L1.OrbitColor = GreenYellow;
+GMAT Earth_Sun_L1.TargetColor = DarkGray;
+GMAT Earth_Sun_L1.Primary = Sun;
+GMAT Earth_Sun_L1.Secondary = Earth;
+GMAT Earth_Sun_L1.Point = L1;
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft VALO;
+GMAT VALO.DateFormat = A1Gregorian;
+GMAT VALO.Epoch = '18 Dec 2024 23:26:52.000';
+GMAT VALO.CoordinateSystem = EarthMJ2000Ec;
+GMAT VALO.DisplayStateType = Keplerian;
+GMAT VALO.SMA = 7250.999999239371;
+GMAT VALO.ECC = 0.01999999995022132;
+GMAT VALO.INC = 0.3024014561687831;
+GMAT VALO.RAAN = 186.0000000000003;
+GMAT VALO.AOP = 47.8023287954571;
+GMAT VALO.TA = 30.64818407295012;
+GMAT VALO.DryMass = 850;
+GMAT VALO.Cd = 2.2;
+GMAT VALO.Cr = 1.8;
+GMAT VALO.DragArea = 15;
+GMAT VALO.SRPArea = 1;
+GMAT VALO.SPADDragScaleFactor = 1;
+GMAT VALO.SPADSRPScaleFactor = 1;
+GMAT VALO.AtmosDensityScaleFactor = 1;
+GMAT VALO.ExtendedMassPropertiesModel = 'None';
+GMAT VALO.NAIFId = -10005001;
+GMAT VALO.NAIFIdReferenceFrame = -9005001;
+GMAT VALO.OrbitColor = Red;
+GMAT VALO.TargetColor = Teal;
+GMAT VALO.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT VALO.CdSigma = 1e+70;
+GMAT VALO.CrSigma = 1e+70;
+GMAT VALO.Id = 'SatId';
+GMAT VALO.Attitude = CoordinateSystemFixed;
+GMAT VALO.SPADSRPInterpolationMethod = Bilinear;
+GMAT VALO.SPADSRPScaleFactorSigma = 1e+70;
+GMAT VALO.SPADDragInterpolationMethod = Bilinear;
+GMAT VALO.SPADDragScaleFactorSigma = 1e+70;
+GMAT VALO.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT VALO.ModelFile = 'aura.3ds';
+GMAT VALO.ModelOffsetX = 0;
+GMAT VALO.ModelOffsetY = 0;
+GMAT VALO.ModelOffsetZ = 0;
+GMAT VALO.ModelRotationX = 0;
+GMAT VALO.ModelRotationY = 0;
+GMAT VALO.ModelRotationZ = 0;
+GMAT VALO.ModelScale = 1;
+GMAT VALO.AttitudeDisplayStateType = 'Quaternion';
+GMAT VALO.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT VALO.AttitudeCoordinateSystem = EarthMJ2000Ec;
+GMAT VALO.EulerAngleSequence = '321';
+
+
+
+
+
+
+
+
+
+
+
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+
+
+
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create ForceModel NearEarth_ForceModel;
+GMAT NearEarth_ForceModel.CentralBody = Earth;
+GMAT NearEarth_ForceModel.PrimaryBodies = {Earth};
+GMAT NearEarth_ForceModel.PointMasses = {Luna};
+GMAT NearEarth_ForceModel.Drag = None;
+GMAT NearEarth_ForceModel.SRP = On;
+GMAT NearEarth_ForceModel.RelativisticCorrection = Off;
+GMAT NearEarth_ForceModel.ErrorControl = RSSStep;
+GMAT NearEarth_ForceModel.GravityField.Earth.Degree = 4;
+GMAT NearEarth_ForceModel.GravityField.Earth.Order = 4;
+GMAT NearEarth_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT NearEarth_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT NearEarth_ForceModel.GravityField.Earth.TideModel = 'None';
+GMAT NearEarth_ForceModel.SRP.Flux = 1367;
+GMAT NearEarth_ForceModel.SRP.SRPModel = Spherical;
+GMAT NearEarth_ForceModel.SRP.Nominal_Sun = 149597870.691;
+
+Create ForceModel DeepSpace_ForceModel;
+GMAT DeepSpace_ForceModel.CentralBody = Sun;
+GMAT DeepSpace_ForceModel.PointMasses = {Earth, Luna, Venus, Sun, Mars, Jupiter, Saturn, Uranus, Neptune};
+GMAT DeepSpace_ForceModel.Drag = None;
+GMAT DeepSpace_ForceModel.SRP = Off;
+GMAT DeepSpace_ForceModel.RelativisticCorrection = Off;
+GMAT DeepSpace_ForceModel.ErrorControl = RSSStep;
+
+Create ForceModel NearVenus_ForceModel;
+GMAT NearVenus_ForceModel.CentralBody = Venus;
+GMAT NearVenus_ForceModel.PrimaryBodies = {Venus};
+GMAT NearVenus_ForceModel.PointMasses = {Sun};
+GMAT NearVenus_ForceModel.Drag = None;
+GMAT NearVenus_ForceModel.SRP = On;
+GMAT NearVenus_ForceModel.RelativisticCorrection = Off;
+GMAT NearVenus_ForceModel.ErrorControl = RSSStep;
+GMAT NearVenus_ForceModel.GravityField.Venus.Degree = 8;
+GMAT NearVenus_ForceModel.GravityField.Venus.Order = 8;
+GMAT NearVenus_ForceModel.GravityField.Venus.StmLimit = 100;
+GMAT NearVenus_ForceModel.GravityField.Venus.PotentialFile = 'MGNP180U.cof';
+GMAT NearVenus_ForceModel.GravityField.Venus.TideModel = 'None';
+GMAT NearVenus_ForceModel.SRP.Flux = 1358;
+GMAT NearVenus_ForceModel.SRP.SRPModel = Spherical;
+GMAT NearVenus_ForceModel.SRP.Nominal_Sun = 149597870.691;
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator NearEarth;
+GMAT NearEarth.FM = NearEarth_ForceModel;
+GMAT NearEarth.Type = RungeKutta89;
+GMAT NearEarth.InitialStepSize = 60;
+GMAT NearEarth.Accuracy = 9.999999999999999e-12;
+GMAT NearEarth.MinStep = 0.01;
+GMAT NearEarth.MaxStep = 2700;
+GMAT NearEarth.MaxStepAttempts = 500000;
+GMAT NearEarth.StopIfAccuracyIsViolated = false;
+
+Create Propagator DeepSpace;
+GMAT DeepSpace.FM = DeepSpace_ForceModel;
+GMAT DeepSpace.Type = PrinceDormand78;
+GMAT DeepSpace.InitialStepSize = 600;
+GMAT DeepSpace.Accuracy = 1e-12;
+GMAT DeepSpace.MinStep = 0;
+GMAT DeepSpace.MaxStep = 864000;
+GMAT DeepSpace.MaxStepAttempts = 50;
+GMAT DeepSpace.StopIfAccuracyIsViolated = true;
+
+Create Propagator NearVenus;
+GMAT NearVenus.FM = NearVenus_ForceModel;
+GMAT NearVenus.Type = PrinceDormand78;
+GMAT NearVenus.InitialStepSize = 600;
+GMAT NearVenus.Accuracy = 1e-12;
+GMAT NearVenus.MinStep = 0;
+GMAT NearVenus.MaxStep = 86400;
+GMAT NearVenus.MaxStepAttempts = 50;
+GMAT NearVenus.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Burns
+%----------------------------------------
+
+Create ImpulsiveBurn ImpulsiveBurn1_FirstApogeeRaise;
+GMAT ImpulsiveBurn1_FirstApogeeRaise.CoordinateSystem = Local;
+GMAT ImpulsiveBurn1_FirstApogeeRaise.Origin = Earth;
+GMAT ImpulsiveBurn1_FirstApogeeRaise.Axes = VNB;
+GMAT ImpulsiveBurn1_FirstApogeeRaise.Element1 = 0.00808;
+GMAT ImpulsiveBurn1_FirstApogeeRaise.Element2 = 0;
+GMAT ImpulsiveBurn1_FirstApogeeRaise.Element3 = 0;
+GMAT ImpulsiveBurn1_FirstApogeeRaise.DecrementMass = false;
+GMAT ImpulsiveBurn1_FirstApogeeRaise.Isp = 300;
+GMAT ImpulsiveBurn1_FirstApogeeRaise.GravitationalAccel = 9.81;
+
+Create ImpulsiveBurn ImpulsiveBurn2;
+GMAT ImpulsiveBurn2.CoordinateSystem = Local;
+GMAT ImpulsiveBurn2.Origin = Earth;
+GMAT ImpulsiveBurn2.Axes = VNB;
+GMAT ImpulsiveBurn2.Element1 = 0.3881;
+GMAT ImpulsiveBurn2.Element2 = 0;
+GMAT ImpulsiveBurn2.Element3 = 0;
+GMAT ImpulsiveBurn2.DecrementMass = false;
+GMAT ImpulsiveBurn2.Isp = 300;
+GMAT ImpulsiveBurn2.GravitationalAccel = 9.81;
+
+Create ImpulsiveBurn ImpulsiveBurn3;
+GMAT ImpulsiveBurn3.CoordinateSystem = Local;
+GMAT ImpulsiveBurn3.Origin = Earth;
+GMAT ImpulsiveBurn3.Axes = VNB;
+GMAT ImpulsiveBurn3.Element1 = 0.5533400000000001;
+GMAT ImpulsiveBurn3.Element2 = 0;
+GMAT ImpulsiveBurn3.Element3 = 0;
+GMAT ImpulsiveBurn3.DecrementMass = false;
+GMAT ImpulsiveBurn3.Isp = 300;
+GMAT ImpulsiveBurn3.GravitationalAccel = 9.81;
+
+Create ImpulsiveBurn ImpulsiveBurn4;
+GMAT ImpulsiveBurn4.CoordinateSystem = Local;
+GMAT ImpulsiveBurn4.Origin = Earth;
+GMAT ImpulsiveBurn4.Axes = VNB;
+GMAT ImpulsiveBurn4.Element1 = 0.58861;
+GMAT ImpulsiveBurn4.Element2 = 0;
+GMAT ImpulsiveBurn4.Element3 = 0;
+GMAT ImpulsiveBurn4.DecrementMass = false;
+GMAT ImpulsiveBurn4.Isp = 300;
+GMAT ImpulsiveBurn4.GravitationalAccel = 9.81;
+
+Create ImpulsiveBurn ImpulsiveBurn5;
+GMAT ImpulsiveBurn5.CoordinateSystem = Local;
+GMAT ImpulsiveBurn5.Origin = Earth;
+GMAT ImpulsiveBurn5.Axes = VNB;
+GMAT ImpulsiveBurn5.Element1 = 0.8307600000000001;
+GMAT ImpulsiveBurn5.Element2 = 0;
+GMAT ImpulsiveBurn5.Element3 = 0;
+GMAT ImpulsiveBurn5.DecrementMass = false;
+GMAT ImpulsiveBurn5.Isp = 300;
+GMAT ImpulsiveBurn5.GravitationalAccel = 9.81;
+
+Create ImpulsiveBurn ImpulsiveBurn6_LastApogeeRaise;
+GMAT ImpulsiveBurn6_LastApogeeRaise.CoordinateSystem = Local;
+GMAT ImpulsiveBurn6_LastApogeeRaise.Origin = Earth;
+GMAT ImpulsiveBurn6_LastApogeeRaise.Axes = VNB;
+GMAT ImpulsiveBurn6_LastApogeeRaise.Element1 = 0.41003;
+GMAT ImpulsiveBurn6_LastApogeeRaise.Element2 = 0;
+GMAT ImpulsiveBurn6_LastApogeeRaise.Element3 = 0;
+GMAT ImpulsiveBurn6_LastApogeeRaise.DecrementMass = false;
+GMAT ImpulsiveBurn6_LastApogeeRaise.Isp = 300;
+GMAT ImpulsiveBurn6_LastApogeeRaise.GravitationalAccel = 9.81;
+
+Create ImpulsiveBurn ImpulsiveBurn7_Final_L1Craft;
+GMAT ImpulsiveBurn7_Final_L1Craft.CoordinateSystem = Local;
+GMAT ImpulsiveBurn7_Final_L1Craft.Origin = Earth;
+GMAT ImpulsiveBurn7_Final_L1Craft.Axes = VNB;
+GMAT ImpulsiveBurn7_Final_L1Craft.Element1 = 0.2513;
+GMAT ImpulsiveBurn7_Final_L1Craft.Element2 = 0;
+GMAT ImpulsiveBurn7_Final_L1Craft.Element3 = 0;
+GMAT ImpulsiveBurn7_Final_L1Craft.DecrementMass = false;
+GMAT ImpulsiveBurn7_Final_L1Craft.Isp = 300;
+GMAT ImpulsiveBurn7_Final_L1Craft.GravitationalAccel = 9.81;
+
+Create ImpulsiveBurn ImpulsiveBurnA_VenusExit;
+GMAT ImpulsiveBurnA_VenusExit.CoordinateSystem = Local;
+GMAT ImpulsiveBurnA_VenusExit.Origin = Earth;
+GMAT ImpulsiveBurnA_VenusExit.Axes = VNB;
+GMAT ImpulsiveBurnA_VenusExit.Element1 = 0.83;
+GMAT ImpulsiveBurnA_VenusExit.Element2 = 0;
+GMAT ImpulsiveBurnA_VenusExit.Element3 = 0;
+GMAT ImpulsiveBurnA_VenusExit.DecrementMass = false;
+GMAT ImpulsiveBurnA_VenusExit.Isp = 300;
+GMAT ImpulsiveBurnA_VenusExit.GravitationalAccel = 9.81;
+
+Create ImpulsiveBurn ImpulsiveBurnB_VenusCourseCorrect;
+GMAT ImpulsiveBurnB_VenusCourseCorrect.CoordinateSystem = Local;
+GMAT ImpulsiveBurnB_VenusCourseCorrect.Origin = Earth;
+GMAT ImpulsiveBurnB_VenusCourseCorrect.Axes = VNB;
+GMAT ImpulsiveBurnB_VenusCourseCorrect.Element1 = 0.1;
+GMAT ImpulsiveBurnB_VenusCourseCorrect.Element2 = 0.1;
+GMAT ImpulsiveBurnB_VenusCourseCorrect.Element3 = 0.1;
+GMAT ImpulsiveBurnB_VenusCourseCorrect.DecrementMass = false;
+GMAT ImpulsiveBurnB_VenusCourseCorrect.Isp = 300;
+GMAT ImpulsiveBurnB_VenusCourseCorrect.GravitationalAccel = 9.81;
+
+Create ImpulsiveBurn VenusOrbitCapture;
+GMAT VenusOrbitCapture.CoordinateSystem = Local;
+GMAT VenusOrbitCapture.Origin = Venus;
+GMAT VenusOrbitCapture.Axes = VNB;
+GMAT VenusOrbitCapture.Element1 = -2;
+GMAT VenusOrbitCapture.Element2 = -2;
+GMAT VenusOrbitCapture.Element3 = -2;
+GMAT VenusOrbitCapture.DecrementMass = false;
+GMAT VenusOrbitCapture.Isp = 300;
+GMAT VenusOrbitCapture.GravitationalAccel = 8.869999999999999;
+
+%----------------------------------------
+%---------- Coordinate Systems
+%----------------------------------------
+
+Create CoordinateSystem SunEcliptic;
+GMAT SunEcliptic.Origin = Sun;
+GMAT SunEcliptic.Axes = MJ2000Ec;
+
+Create CoordinateSystem VenusInertial;
+GMAT VenusInertial.Origin = Venus;
+GMAT VenusInertial.Axes = BodyInertial;
+
+Create CoordinateSystem VenusFixed;
+GMAT VenusFixed.Origin = Venus;
+GMAT VenusFixed.Axes = BodyFixed;
+
+Create CoordinateSystem SunFixed;
+GMAT SunFixed.Origin = Sun;
+GMAT SunFixed.Axes = BodyFixed;
+
+%----------------------------------------
+%---------- Solvers
+%----------------------------------------
+
+Create DifferentialCorrector DC;
+GMAT DC.ShowProgress = true;
+GMAT DC.ReportStyle = Normal;
+GMAT DC.ReportFile = 'DifferentialCorrectorDC.data';
+GMAT DC.MaximumIterations = 250;
+GMAT DC.DerivativeMethod = ForwardDifference;
+GMAT DC.Algorithm = NewtonRaphson;
+
+%----------------------------------------
+%---------- Plots/Reports
+%----------------------------------------
+
+Create OrbitView EarthView;
+GMAT EarthView.SolverIterations = Current;
+GMAT EarthView.UpperLeft = [ 0.6656525707331914 0.4744211093161013 ];
+GMAT EarthView.Size = [ 0.3328262853665957 0.5024232633279483 ];
+GMAT EarthView.RelativeZOrder = 854;
+GMAT EarthView.Maximized = false;
+GMAT EarthView.Add = {VALO, Earth, Earth_Sun_L1, Sun};
+GMAT EarthView.CoordinateSystem = EarthMJ2000Ec;
+GMAT EarthView.DrawObject = [ true true true true true ];
+GMAT EarthView.DataCollectFrequency = 1;
+GMAT EarthView.UpdatePlotFrequency = 50;
+GMAT EarthView.NumPointsToRedraw = 0;
+GMAT EarthView.ShowPlot = true;
+GMAT EarthView.MaxPlotPoints = 20000;
+GMAT EarthView.ShowLabels = true;
+GMAT EarthView.ViewPointReference = Earth;
+GMAT EarthView.ViewPointVector = [ 0 0 400000 ];
+GMAT EarthView.ViewDirection = Earth;
+GMAT EarthView.ViewScaleFactor = 1;
+GMAT EarthView.ViewUpCoordinateSystem = EarthMJ2000Ec;
+GMAT EarthView.ViewUpAxis = X;
+GMAT EarthView.EclipticPlane = On;
+GMAT EarthView.XYPlane = On;
+GMAT EarthView.WireFrame = On;
+GMAT EarthView.Axes = On;
+GMAT EarthView.Grid = Off;
+GMAT EarthView.SunLine = Off;
+GMAT EarthView.UseInitialView = On;
+GMAT EarthView.StarCount = 3000;
+GMAT EarthView.EnableStars = On;
+GMAT EarthView.EnableConstellations = On;
+
+Create OrbitView SolarSystemView;
+GMAT SolarSystemView.SolverIterations = Current;
+GMAT SolarSystemView.UpperLeft = [ 0 0.4749596122778675 ];
+GMAT SolarSystemView.Size = [ 0.3328262853665957 0.501884760366182 ];
+GMAT SolarSystemView.RelativeZOrder = 858;
+GMAT SolarSystemView.Maximized = false;
+GMAT SolarSystemView.Add = {VALO, Earth, Venus, Sun, Earth_Sun_L1};
+GMAT SolarSystemView.CoordinateSystem = SunEcliptic;
+GMAT SolarSystemView.DrawObject = [ true true true true true true ];
+GMAT SolarSystemView.DataCollectFrequency = 1;
+GMAT SolarSystemView.UpdatePlotFrequency = 50;
+GMAT SolarSystemView.NumPointsToRedraw = 0;
+GMAT SolarSystemView.ShowPlot = true;
+GMAT SolarSystemView.MaxPlotPoints = 20000;
+GMAT SolarSystemView.ShowLabels = true;
+GMAT SolarSystemView.ViewPointReference = Luna;
+GMAT SolarSystemView.ViewPointVector = [ 0 0 1000000000 ];
+GMAT SolarSystemView.ViewDirection = Sun;
+GMAT SolarSystemView.ViewScaleFactor = 0.5;
+GMAT SolarSystemView.ViewUpCoordinateSystem = SunEcliptic;
+GMAT SolarSystemView.ViewUpAxis = X;
+GMAT SolarSystemView.EclipticPlane = Off;
+GMAT SolarSystemView.XYPlane = On;
+GMAT SolarSystemView.WireFrame = Off;
+GMAT SolarSystemView.Axes = On;
+GMAT SolarSystemView.Grid = Off;
+GMAT SolarSystemView.SunLine = Off;
+GMAT SolarSystemView.UseInitialView = Off;
+GMAT SolarSystemView.StarCount = 1000;
+GMAT SolarSystemView.EnableStars = On;
+GMAT SolarSystemView.EnableConstellations = On;
+
+Create OrbitView VenusView;
+GMAT VenusView.SolverIterations = Current;
+GMAT VenusView.UpperLeft = [ 0.3328262853665957 0.4749596122778675 ];
+GMAT VenusView.Size = [ 0.3328262853665957 0.501884760366182 ];
+GMAT VenusView.RelativeZOrder = 862;
+GMAT VenusView.Maximized = false;
+GMAT VenusView.Add = {VALO, Venus, Sun};
+GMAT VenusView.CoordinateSystem = VenusInertial;
+GMAT VenusView.DrawObject = [ true true true ];
+GMAT VenusView.DataCollectFrequency = 1;
+GMAT VenusView.UpdatePlotFrequency = 50;
+GMAT VenusView.NumPointsToRedraw = 0;
+GMAT VenusView.ShowPlot = true;
+GMAT VenusView.MaxPlotPoints = 20000;
+GMAT VenusView.ShowLabels = true;
+GMAT VenusView.ViewPointReference = Venus;
+GMAT VenusView.ViewPointVector = [ 0 0 300000 ];
+GMAT VenusView.ViewDirection = Venus;
+GMAT VenusView.ViewScaleFactor = 1;
+GMAT VenusView.ViewUpCoordinateSystem = SunEcliptic;
+GMAT VenusView.ViewUpAxis = X;
+GMAT VenusView.EclipticPlane = Off;
+GMAT VenusView.XYPlane = On;
+GMAT VenusView.WireFrame = Off;
+GMAT VenusView.Axes = On;
+GMAT VenusView.Grid = Off;
+GMAT VenusView.SunLine = Off;
+GMAT VenusView.UseInitialView = On;
+GMAT VenusView.StarCount = 7000;
+GMAT VenusView.EnableStars = On;
+GMAT VenusView.EnableConstellations = On;
+
+%----------------------------------------
+%---------- Arrays, Variables, Strings
+%----------------------------------------
+Create Variable I FreeRun VenusAlt;
+GMAT FreeRun = 0;
+GMAT VenusAlt = 1;
+
+
+
+
+
+
+
+
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+BeginMissionSequence;
+
+Propagate 'Prop to Perigee' Synchronized NearEarth(VALO) {VALO.Periapsis, OrbitColor = [255 255 128]};
+
+Maneuver 'Burn1' ImpulsiveBurn1_FirstApogeeRaise(VALO);
+For I = 1:1:1;
+   Propagate 'Prop Burn 1 Perigee' Synchronized NearEarth(VALO) {VALO.Periapsis, OrbitColor = [0 255 64]};
+EndFor;
+
+Maneuver 'Burn2' ImpulsiveBurn2(VALO);
+For I = 1:1:1;
+   Propagate 'Prop Burn 2 Perigee' Synchronized NearEarth(VALO) {VALO.Periapsis, OrbitColor = [0 255 255]};
+EndFor;
+
+Maneuver 'Burn3' ImpulsiveBurn3(VALO);
+For I = 1:1:1;
+   Propagate 'Prop Burn 3 Perigee' Synchronized NearEarth(VALO) {VALO.Periapsis, OrbitColor = [255 255 255]};
+EndFor;
+
+Maneuver 'Burn4' ImpulsiveBurn4(VALO);
+For I = 1:1:1;
+   Propagate 'Prop Burn 4 Perigee' Synchronized NearEarth(VALO) {VALO.Periapsis, OrbitColor = [255 0 255]};
+EndFor;
+
+Maneuver 'Burn5' ImpulsiveBurn5(VALO);
+For I = 1:1:1;
+   Propagate 'Prop Burn 5 Perigee' Synchronized NearEarth(VALO) {VALO.Periapsis, OrbitColor = [255 0 128]};
+EndFor;
+
+Maneuver 'Burn6' ImpulsiveBurn6_LastApogeeRaise(VALO);
+For I = 1:1:1;
+   Propagate 'Prop Burn 6 Perigee' Synchronized NearEarth(VALO) {VALO.Periapsis, OrbitColor = [255 255 255]};
+EndFor;
+Propagate 'Prop 1 Second Post Burn (Time Spot)' NearEarth(VALO) {VALO.ElapsedSecs = 1, OrbitColor = [0 255 64]};
+
+Target 'Target Venus (Mid-Course Correction)' DC {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
+   Vary 'Course Correct V (Element 1)' DC(ImpulsiveBurnA_VenusExit.Element1 = 0.3982769746932227, {Perturbation = 0.0001, Lower = -3.3, Upper = 3.4, MaxStep = 0.5, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary 'Course Correct V (Element 2)' DC(ImpulsiveBurnA_VenusExit.Element2 = 0.2055201160317643, {Perturbation = 0.0001, Lower = -2, Upper = 2, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary 'Course Correct V (Element 3)' DC(ImpulsiveBurnA_VenusExit.Element3 = 1.937057614903879, {Perturbation = 0.0001, Lower = -2, Upper = 2, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Maneuver 'TCM Burn to Venus' ImpulsiveBurnA_VenusExit(VALO);
+   Propagate 'Prop to Earth SOI' NearEarth(VALO) {VALO.Earth.Altitude = 969000, StopTolerance = 0.1};
+   Propagate 'Prop Deep Space (Mid-Point 50 Days)' DeepSpace(VALO) {VALO.ElapsedDays = 50, OrbitColor = [0 255 64]};
+   Propagate 'Prop Deep Space (Remaining to Venus SOI)' DeepSpace(VALO) {VALO.ElapsedDays = 50, OrbitColor = [0 255 64]};
+   Propagate 'Prop in Venus SOI' NearVenus(VALO) {VALO.Venus.Periapsis, StopTolerance = 0.0001};
+   Achieve 'Achieve BdotR 0' DC(VALO.VenusInertial.BdotR = 0, {Tolerance = .00001});
+   Achieve 'Achieve BdotT 0' DC(VALO.VenusInertial.BdotT = 40000, {Tolerance = .00001});
+EndTarget;  % For targeter DC
+
+Target 'Target Orbit Capture' DC {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
+   Vary 'Vary VenusOrbitCapture.V' DC(VenusOrbitCapture.Element1 = -6.399999999999995, {Perturbation = .00001, Lower = -9.999999e300, Upper = 9.999999e300, MaxStep = .1, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Maneuver 'TCM VenusOrbitCapture' VenusOrbitCapture(VALO);
+   Propagate 'Prop to Venus Periapsis' NearVenus(VALO) {VALO.Venus.Apoapsis};
+   Achieve 'Achieve RMAG' DC(VALO.Venus.RMAG = 35000, {Tolerance = .1});
+EndTarget;  % For targeter DC
+
+Propagate 'Prop 1 Day' NearVenus(VALO) {VALO.ElapsedDays = 1};
+
+Stop;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

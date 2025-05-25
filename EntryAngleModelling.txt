@@ -1,0 +1,438 @@
+==============================SIMULATION CONFIGURATION=================================
+
+= Drag Co-Efficients and Cross Sectional Area
+
+Probe CD (coef.drag)  : 1.0500
+Probe S (X section)   : 3.1416 m2
+
+= Mass
+
+Probe Mass            : 1584.76 kg
+
+= Ballistic Entry Characteristics
+
+Entry Angle           : VARIABLE
+Entry Velocity        : 7816.00 ms
+Start Altitude        : 7816.00 maxmetres
+
+= Atmospheric and Planetary
+
+Atmosphere Interface  : 160000.00 m
+Scale Height          : 15819.00 m
+Gravity (Venus)       : 8.87 ms/s
+Equatorial Mean Radius: 6051800.00 ms/s
+
+= Simulation Events
+
+Max Simluation Steps  : 30000000.00 steps
+Step Resolution       : 1000.00 [1000 = ms / 1 = seconds]
+
+
+====================================Call Step T15======================================
+
+==================================SIMULATION START=====================================
+0000.000 Reached altitude of 170.00 km
+0010.000 Reached altitude of 149.77 km
+0020.000 Reached altitude of 129.54 km
+0030.000 Reached altitude of 109.31 km
+0040.000 Reached altitude of 89.16 km
+0050.000 Reached altitude of 73.18 km
+0060.000 Reached altitude of 67.98 km
+0070.000 Reached altitude of 66.13 km
+
+==================================SIMULATION ENDED=====================================
+
+====================================SUMMARY DATA=======================================
+Start Time (real)     : 2025-05-25 10:34:41.849020
+End Time (real)       : 2025-05-25 10:36:55.750193
+Run Time (real)       : 133.901173 seconds
+Run Time (sim)        : 72.15 seconds
+Velocity              : 399.99 m/s
+Acceleration          : 0.03 m/s/s
+Vertical Velocity     : 103.53 m/s
+Horizontal Velocity   : 386.38 m/s
+Vertical Distance     : 104.11 km
+Horizontal Distance   : 388.55 km
+Max Deceleration      : 78.30 g
+Max Deceleration Time : 48.91 seconds
+Max Temperature       : -6.55 Degrees C
+Max Temperature Time  : 23.33 seconds
+Max Density           : 167.2000 kg/m3
+Max Density Time      : 71.08 seconds
+Lowest Altitude       : 65.89 km
+Lowest Altitude Time  : 72.15 seconds
+=======================================================================================
+
+=========================================PLOT==========================================
+
+
+====================================END OF SCRIPT======================================
+
+
+====================================Call Step T30======================================
+
+==================================SIMULATION START=====================================
+0000.000 Reached altitude of 170.00 km
+0010.000 Reached altitude of 130.92 km
+0020.000 Reached altitude of 91.86 km
+0030.000 Reached altitude of 65.75 km
+
+==================================SIMULATION ENDED=====================================
+
+====================================SUMMARY DATA=======================================
+Start Time (real)     : 2025-05-25 10:36:56.481990
+End Time (real)       : 2025-05-25 10:37:45.129901
+Run Time (real)       : 48.647911 seconds
+Run Time (sim)        : 37.71 seconds
+Velocity              : 399.99 m/s
+Acceleration          : 0.05 m/s/s
+Vertical Velocity     : 200.02 m/s
+Horizontal Velocity   : 346.44 m/s
+Vertical Distance     : 107.30 km
+Horizontal Distance   : 185.85 km
+Max Deceleration      : 149.37 g
+Max Deceleration Time : 25.48 seconds
+Max Temperature       : -6.62 Degrees C
+Max Temperature Time  : 12.08 seconds
+Max Density           : 283.8000 kg/m3
+Max Density Time      : 36.18 seconds
+Lowest Altitude       : 62.70 km
+Lowest Altitude Time  : 37.71 seconds
+=======================================================================================
+
+=========================================PLOT==========================================
+
+
+====================================END OF SCRIPT======================================
+
+
+====================================Call Step T45======================================
+
+==================================SIMULATION START=====================================
+0000.000 Reached altitude of 169.99 km
+0010.000 Reached altitude of 114.73 km
+0020.000 Reached altitude of 66.31 km
+
+==================================SIMULATION ENDED=====================================
+
+====================================SUMMARY DATA=======================================
+Start Time (real)     : 2025-05-25 10:37:45.652586
+End Time (real)       : 2025-05-25 10:38:15.847477
+Run Time (real)       : 30.194891 seconds
+Run Time (sim)        : 27.17 seconds
+Velocity              : 399.95 m/s
+Acceleration          : 0.06 m/s/s
+Vertical Velocity     : 282.85 m/s
+Horizontal Velocity   : 282.85 m/s
+Vertical Distance     : 109.09 km
+Horizontal Distance   : 109.09 km
+Max Deceleration      : 195.41 g
+Max Deceleration Time : 18.22 seconds
+Max Temperature       : -6.55 Degrees C
+Max Temperature Time  : 8.54 seconds
+Max Density           : 380.6000 kg/m3
+Max Density Time      : 26.36 seconds
+Lowest Altitude       : 60.91 km
+Lowest Altitude Time  : 27.17 seconds
+=======================================================================================
+
+=========================================PLOT==========================================
+
+
+====================================END OF SCRIPT======================================
+
+
+====================================Call Step T60======================================
+
+==================================SIMULATION START=====================================
+0000.000 Reached altitude of 169.99 km
+0010.000 Reached altitude of 102.31 km
+0020.000 Reached altitude of 60.94 km
+
+==================================SIMULATION ENDED=====================================
+
+====================================SUMMARY DATA=======================================
+Start Time (real)     : 2025-05-25 10:38:16.339776
+End Time (real)       : 2025-05-25 10:38:38.586671
+Run Time (real)       : 22.246895 seconds
+Run Time (sim)        : 22.48 seconds
+Velocity              : 399.98 m/s
+Acceleration          : 0.07 m/s/s
+Vertical Velocity     : 346.46 m/s
+Horizontal Velocity   : 200.03 m/s
+Vertical Distance     : 110.19 km
+Horizontal Distance   : 63.62 km
+Max Deceleration      : 237.47 g
+Max Deceleration Time : 15.93 seconds
+Max Temperature       : -4.75 Degrees C
+Max Temperature Time  : 22.06 seconds
+Max Density           : 467.1000 kg/m3
+Max Density Time      : 22.22 seconds
+Lowest Altitude       : 59.81 km
+Lowest Altitude Time  : 22.48 seconds
+=======================================================================================
+
+=========================================PLOT==========================================
+
+
+====================================END OF SCRIPT======================================
+
+
+====================================Call Step T75======================================
+
+==================================SIMULATION START=====================================
+0000.000 Reached altitude of 169.99 km
+0010.000 Reached altitude of 94.50 km
+0020.000 Reached altitude of 59.33 km
+
+==================================SIMULATION ENDED=====================================
+
+====================================SUMMARY DATA=======================================
+Start Time (real)     : 2025-05-25 10:38:38.970520
+End Time (real)       : 2025-05-25 10:38:58.408715
+Run Time (real)       : 19.438195 seconds
+Run Time (sim)        : 20.33 seconds
+Velocity              : 399.99 m/s
+Acceleration          : 0.08 m/s/s
+Vertical Velocity     : 386.44 m/s
+Horizontal Velocity   : 103.55 m/s
+Vertical Distance     : 110.81 km
+Horizontal Distance   : 29.69 km
+Max Deceleration      : 276.45 g
+Max Deceleration Time : 14.21 seconds
+Max Temperature       : -1.45 Degrees C
+Max Temperature Time  : 20.33 seconds
+Max Density           : 493.3000 kg/m3
+Max Density Time      : 19.48 seconds
+Lowest Altitude       : 59.19 km
+Lowest Altitude Time  : 20.33 seconds
+=======================================================================================
+
+=========================================PLOT==========================================
+
+
+====================================END OF SCRIPT======================================
+
+
+====================================Call Step F15======================================
+
+==================================SIMULATION START=====================================
+0000.000 Reached altitude of 170.00 km
+0010.000 Reached altitude of 149.77 km
+0020.000 Reached altitude of 129.55 km
+0030.000 Reached altitude of 109.36 km
+0040.000 Reached altitude of 89.30 km
+0050.000 Reached altitude of 69.64 km
+0060.000 Reached altitude of 51.26 km
+0070.000 Reached altitude of 35.91 km
+0080.000 Reached altitude of 25.04 km
+0090.000 Reached altitude of 18.13 km
+0100.000 Reached altitude of 13.72 km
+0110.000 Reached altitude of 10.74 km
+0120.000 Reached altitude of 8.60 km
+0130.000 Reached altitude of 6.99 km
+0140.000 Reached altitude of 5.72 km
+
+==================================SIMULATION ENDED=====================================
+
+====================================SUMMARY DATA=======================================
+Start Time (real)     : 2025-05-25 10:38:58.836668
+End Time (real)       : 2025-05-25 10:46:34.127004
+Run Time (real)       : 455.290336 seconds
+Run Time (sim)        : 144.72 seconds
+Velocity              : 400.00 m/s
+Acceleration          : 0.01 m/s/s
+Vertical Velocity     : 103.53 m/s
+Horizontal Velocity   : 386.38 m/s
+Vertical Distance     : 164.80 km
+Horizontal Distance   : 615.02 km
+Max Deceleration      : 20.74 g
+Max Deceleration Time : 71.96 seconds
+Max Temperature       : 422.65 Degrees C
+Max Temperature Time  : 143.43 seconds
+Max Density           : 46.7781 kg/m3
+Max Density Time      : 144.71 seconds
+Lowest Altitude       : 5.20 km
+Lowest Altitude Time  : 144.72 seconds
+=======================================================================================
+
+=========================================PLOT==========================================
+
+Numerical Acc. Peak   : -183.85 m/s/s
+Numerical Acc. Peak g : -20.73 g
+
+====================================END OF SCRIPT======================================
+
+
+====================================Call Step F30======================================
+
+==================================SIMULATION START=====================================
+0000.000 Reached altitude of 170.00 km
+0010.000 Reached altitude of 130.92 km
+0020.000 Reached altitude of 91.93 km
+0030.000 Reached altitude of 53.89 km
+0040.000 Reached altitude of 22.81 km
+0050.000 Reached altitude of 6.96 km
+0060.000 Reached altitude of 0.14 km
+0060.303 Gravity dominant force
+0060.303 Gravity > Drag
+0060.303 Drag Force: 1951.16 N
+0060.303 Gravity Force: 28113.69 N
+0060.306 Hit ground, model stopping
+
+==================================SIMULATION ENDED=====================================
+
+====================================SUMMARY DATA=======================================
+Start Time (real)     : 2025-05-25 10:46:35.112972
+End Time (real)       : 2025-05-25 10:48:04.301763
+Run Time (real)       : 89.188791 seconds
+Run Time (sim)        : 60.31 seconds
+Velocity              : 919.62 m/s
+Acceleration          : 0.00 m/s/s
+Vertical Velocity     : 459.81 m/s
+Horizontal Velocity   : 796.42 m/s
+Vertical Distance     : 170.00 km
+Horizontal Distance   : 294.45 km
+Max Deceleration      : 40.06 g
+Max Deceleration Time : 39.92 seconds
+Max Temperature       : 462.35 Degrees C
+Max Temperature Time  : 60.30 seconds
+Max Density           : 65.0000 kg/m3
+Max Density Time      : 60.30 seconds
+Lowest Altitude       : -0.00 km
+Lowest Altitude Time  : 60.30 seconds
+=======================================================================================
+
+=========================================PLOT==========================================
+
+Numerical Acc. Peak   : -355.17 m/s/s
+Numerical Acc. Peak g : -40.04 g
+
+====================================END OF SCRIPT======================================
+
+
+====================================Call Step F45======================================
+
+==================================SIMULATION START=====================================
+0000.000 Reached altitude of 169.99 km
+0010.000 Reached altitude of 114.74 km
+0020.000 Reached altitude of 60.00 km
+0030.000 Reached altitude of 15.01 km
+0037.482 Gravity dominant force
+0037.482 Gravity > Drag
+0037.482 Drag Force: 6832.46 N
+0037.482 Gravity Force: 19879.38 N
+0037.483 Hit ground, model stopping
+
+==================================SIMULATION ENDED=====================================
+
+====================================SUMMARY DATA=======================================
+Start Time (real)     : 2025-05-25 10:48:04.907876
+End Time (real)       : 2025-05-25 10:48:45.728612
+Run Time (real)       : 40.820736 seconds
+Run Time (sim)        : 37.48 seconds
+Velocity              : 1720.88 m/s
+Acceleration          : 0.00 m/s/s
+Vertical Velocity     : 1216.85 m/s
+Horizontal Velocity   : 1216.85 m/s
+Vertical Distance     : 170.00 km
+Horizontal Distance   : 170.00 km
+Max Deceleration      : 56.64 g
+Max Deceleration Time : 29.22 seconds
+Max Temperature       : 462.35 Degrees C
+Max Temperature Time  : 37.48 seconds
+Max Density           : 65.0000 kg/m3
+Max Density Time      : 37.48 seconds
+Lowest Altitude       : -0.00 km
+Lowest Altitude Time  : 37.48 seconds
+=======================================================================================
+
+=========================================PLOT==========================================
+
+Numerical Acc. Peak   : -502.29 m/s/s
+Numerical Acc. Peak g : -56.63 g
+
+====================================END OF SCRIPT======================================
+
+
+====================================Call Step F60======================================
+
+==================================SIMULATION START=====================================
+0000.000 Reached altitude of 169.99 km
+0010.000 Reached altitude of 102.33 km
+0020.000 Reached altitude of 36.60 km
+0029.208 Gravity dominant force
+0029.208 Gravity > Drag
+0029.208 Drag Force: 11906.39 N
+0029.208 Gravity Force: 16231.45 N
+0029.209 Hit ground, model stopping
+
+==================================SIMULATION ENDED=====================================
+
+====================================SUMMARY DATA=======================================
+Start Time (real)     : 2025-05-25 10:48:46.221733
+End Time (real)       : 2025-05-25 10:49:15.460565
+Run Time (real)       : 29.238832 seconds
+Run Time (sim)        : 29.21 seconds
+Velocity              : 2271.71 m/s
+Acceleration          : 0.00 m/s/s
+Vertical Velocity     : 1967.36 m/s
+Horizontal Velocity   : 1135.86 m/s
+Vertical Distance     : 170.00 km
+Horizontal Distance   : 98.15 km
+Max Deceleration      : 69.37 g
+Max Deceleration Time : 24.33 seconds
+Max Temperature       : 462.25 Degrees C
+Max Temperature Time  : 29.21 seconds
+Max Density           : 64.9959 kg/m3
+Max Density Time      : 29.21 seconds
+Lowest Altitude       : -0.00 km
+Lowest Altitude Time  : 29.21 seconds
+=======================================================================================
+
+=========================================PLOT==========================================
+
+Numerical Acc. Peak   : -615.17 m/s/s
+Numerical Acc. Peak g : -69.35 g
+
+====================================END OF SCRIPT======================================
+
+
+====================================Call Step F75======================================
+
+==================================SIMULATION START=====================================
+0000.000 Reached altitude of 169.99 km
+0010.000 Reached altitude of 94.54 km
+0020.000 Reached altitude of 23.28 km
+0025.679 Hit ground, model stopping
+
+==================================SIMULATION ENDED=====================================
+
+====================================SUMMARY DATA=======================================
+Start Time (real)     : 2025-05-25 10:49:15.905697
+End Time (real)       : 2025-05-25 10:49:40.318187
+Run Time (real)       : 24.41249 seconds
+Run Time (sim)        : 25.68 seconds
+Velocity              : 2581.45 m/s
+Acceleration          : 0.00 m/s/s
+Vertical Velocity     : 2493.49 m/s
+Horizontal Velocity   : 668.13 m/s
+Vertical Distance     : 170.00 km
+Horizontal Distance   : 45.55 km
+Max Deceleration      : 77.37 g
+Max Deceleration Time : 22.05 seconds
+Max Temperature       : 462.25 Degrees C
+Max Temperature Time  : 25.68 seconds
+Max Density           : 64.9959 kg/m3
+Max Density Time      : 25.68 seconds
+Lowest Altitude       : -0.00 km
+Lowest Altitude Time  : 25.68 seconds
+=======================================================================================
+
+=========================================PLOT==========================================
+
+Numerical Acc. Peak   : -686.13 m/s/s
+Numerical Acc. Peak g : -77.35 g
+
+====================================END OF SCRIPT======================================
+
